@@ -265,7 +265,10 @@ details[open] > .section-toggle::after { content: "−"; }
 footer { display: flex; justify-content: space-between; gap: 18px; border-top: 1px solid var(--line); padding: 25px 0 35px; font-size: .8125rem; color: var(--muted); }
 
 /* Accessibility and responsive layout. */
-/* Keep native scrolling and a constant gutter; only the thumb color changes. */
+/* Keep content aligned across short and long pages with classic scrollbars. */
+@media screen {
+  html { overflow-y: scroll; }
+}
 @media (forced-colors: none) {
   html.auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color .25s ease; }
   html.auto-hide-scrollbar.is-scrolling { scrollbar-color: #c8cbd1 transparent; }
