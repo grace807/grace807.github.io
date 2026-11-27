@@ -1,0 +1,40 @@
+html:has(.image-viewer[open]) { overflow: hidden; scrollbar-gutter: stable; }
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  width: min(1120px, calc(100% - 32px));
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  color: var(--ink);
+  background: white;
+  box-shadow: 0 12px 64px #0004;
+}
+.image-viewer::backdrop { background: rgb(16 18 24 / 78%); }
+.viewer-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: min(88vh, 900px);
+  height: min(88dvh, 900px);
+}
+.viewer-toolbar { display: flex; align-items: center; gap: 4px; padding: 7px 12px; }
+.viewer-toolbar button {
+  width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
+  background: transparent; color: inherit; font: 1.35rem/1 var(--body);
+}
+.viewer-toolbar button:hover { background: var(--soft); }
+.viewer-toolbar button:focus-visible { outline-offset: -3px; }
+.viewer-count { min-width: 5ch; color: var(--muted); font-size: .875rem; text-align: center; font-variant-numeric: tabular-nums; }
+.viewer-toolbar .viewer-close { margin-inline-start: auto; font-size: 1.75rem; }
+.viewer-stage { min-height: 0; padding: 10px; background: var(--soft); touch-action: pan-y pinch-zoom; }
+.viewer-stage img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.viewer-caption { max-height: 24vh; overflow: auto; overscroll-behavior: contain; padding: 12px 18px; font-size: .875rem; line-height: 1.5; }
+@media (max-width: 600px) {
+  .image-viewer { width: calc(100% - 16px); }
+  .viewer-toolbar { padding: 4px 6px; }
+  .viewer-stage { padding: 4px; }
+  .viewer-caption { padding: 10px 12px; }
+}
