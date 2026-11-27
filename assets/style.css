@@ -270,14 +270,16 @@ footer { display: flex; justify-content: space-between; gap: 18px; border-top: 1
   html { overflow-y: scroll; }
 }
 @media (forced-colors: none) {
-  html.auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color .25s ease; }
+  /* Set the width on the first paint. JavaScript only fades the thumb. */
+  html { scrollbar-width: thin; }
+  html.auto-hide-scrollbar { scrollbar-color: transparent transparent; transition: scrollbar-color .25s ease; }
   html.auto-hide-scrollbar.is-scrolling { scrollbar-color: #c8cbd1 transparent; }
   html.auto-hide-scrollbar body { scrollbar-color: auto; }
-  html.auto-hide-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+  html::-webkit-scrollbar { width: 6px; height: 6px; }
   html.auto-hide-scrollbar::-webkit-scrollbar-track { background: transparent; }
   html.auto-hide-scrollbar::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; }
   html.auto-hide-scrollbar.is-scrolling::-webkit-scrollbar-thumb { background: #c8cbd1; }
-  html.auto-hide-scrollbar::-webkit-scrollbar-button { display: none; }
+  html::-webkit-scrollbar-button { display: none; }
 }
 .skip-link { position: fixed; left: 20px; top: -80px; padding: 12px 20px; z-index: 30; background: white; }
 .skip-link:focus { top: 12px; }
