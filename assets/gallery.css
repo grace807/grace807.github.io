@@ -23,13 +23,18 @@ html:has(.image-viewer[open]) { overflow: hidden; scrollbar-gutter: stable; }
 .viewer-toolbar { display: flex; align-items: center; gap: 4px; padding: 7px 12px; }
 .viewer-toolbar button {
   width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
-  background: transparent; color: inherit; font: 1.35rem/1 var(--body);
+  background: transparent; color: inherit;
+}
+.viewer-toolbar button:not([hidden]) { display: grid; place-items: center; }
+.viewer-toolbar svg {
+  display: block; width: 24px; height: 24px; fill: none;
+  stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
 }
 .viewer-toolbar button:hover { background: var(--soft); }
 .viewer-toolbar button:focus-visible { outline-offset: -3px; }
-.viewer-count { min-width: 5ch; color: var(--muted); font-size: .875rem; text-align: center; font-variant-numeric: tabular-nums; }
+.viewer-count { min-width: 5ch; color: var(--muted); font-size: .875rem; line-height: 1; text-align: center; font-variant-numeric: tabular-nums; }
 .viewer-toolbar .viewer-close {
-  display: grid; place-items: center; margin-inline-start: auto; border-radius: 4px;
+  margin-inline-start: auto; border-radius: 4px;
 }
 .viewer-toolbar .viewer-close:hover { color: var(--accent); background: transparent; }
 .viewer-stage { min-height: 0; padding: 10px; background: var(--soft); touch-action: pan-y pinch-zoom; }
