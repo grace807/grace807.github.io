@@ -8,6 +8,7 @@
   const count = viewer.querySelector('.viewer-count');
   const previous = viewer.querySelector('.viewer-prev');
   const next = viewer.querySelector('.viewer-next');
+  const closeButton = viewer.querySelector('.viewer-close');
   let group = [];
   let position = 0;
   let opener;
@@ -39,11 +40,7 @@
     if (Number.isInteger(index) && figures[index]) {
       opener ??= figures[index].querySelector('a');
       show(figures[index]);
-    } else if (viewer.open) {
-      viewer.close();
-      opener?.focus({preventScroll: true});
-      window.scrollTo({top: readingOffset, behavior: 'instant'});
-    }
+    } else if (viewer.open) returnToArticle();
   }
 
   for (const [index, figure] of figures.entries()) {
@@ -51,10 +48,12 @@
       link.setAttribute('aria-haspopup', 'dialog');
       link.addEventListener('click', event => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        history.pushState({...history.state, projectImage: index}, '');
         event.preventDefault();
+        if (closing) return;
+        history.pushState({...history.state, projectImage: index}, '');
         opener = link;
         show(figure);
+        if (event.detail === 0) closeButton.focus({preventScroll: true});
       });
     }
   }
@@ -66,15 +65,24 @@
     show(figure);
   }
 
+  function returnToArticle() {
+    viewer.close();
+    opener?.focus({preventScroll: true});
+    window.scrollTo({top: readingOffset, behavior: 'instant'});
+  }
+
   function closeViewer() {
-    if (closing) return;
-    closing = true;
-    history.back();
+    if (!viewer.open) return;
+    returnToArticle();
+    if (Number.isInteger(history.state?.projectImage)) {
+      closing = true;
+      history.back();
+    }
   }
 
   previous.addEventListener('click', () => step(-1));
   next.addEventListener('click', () => step(1));
-  viewer.querySelector('.viewer-close').addEventListener('click', closeViewer);
+  closeButton.addEventListener('click', closeViewer);
   viewer.addEventListener('click', event => {
     if (event.target === viewer) closeViewer();
   });
@@ -82,9 +90,12 @@
     event.preventDefault();
     closeViewer();
   });
-  viewer.addEventListener('keydown', event => {
-    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+  document.addEventListener('keydown', event => {
+    if (!viewer.open || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'Escape' || event.key.toLowerCase() === 'x' || event.code === 'KeyX') {
+      event.preventDefault();
+      closeViewer();
+    } else if (!event.shiftKey && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
       event.preventDefault();
       step(event.key === 'ArrowLeft' ? -1 : 1);
     }

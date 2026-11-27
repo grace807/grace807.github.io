@@ -28,7 +28,10 @@ html:has(.image-viewer[open]) { overflow: hidden; scrollbar-gutter: stable; }
 .viewer-toolbar button:hover { background: var(--soft); }
 .viewer-toolbar button:focus-visible { outline-offset: -3px; }
 .viewer-count { min-width: 5ch; color: var(--muted); font-size: .875rem; text-align: center; font-variant-numeric: tabular-nums; }
-.viewer-toolbar .viewer-close { margin-inline-start: auto; font-size: 1.75rem; }
+.viewer-toolbar .viewer-close {
+  display: grid; place-items: center; margin-inline-start: auto; border-radius: 4px;
+}
+.viewer-toolbar .viewer-close:hover { color: var(--accent); background: transparent; }
 .viewer-stage { min-height: 0; padding: 10px; background: var(--soft); touch-action: pan-y pinch-zoom; }
 .viewer-stage img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .viewer-caption { max-height: 24vh; overflow: auto; overscroll-behavior: contain; padding: 12px 18px; font-size: .875rem; line-height: 1.5; }
