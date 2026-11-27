@@ -202,9 +202,9 @@ details[open] > .section-toggle::after { content: "−"; }
 .disclosure-body { padding-top: 20px; }
 .disclosure-body > p { margin-bottom: 8px; }
 .prior-heading { margin-top: 44px; }
-.applied-projects { margin-top: 25px; }
+.disclosure-body > .applied-projects { margin-top: 25px; }
 .applied-project { border-bottom: 1px solid var(--line); }
-.applied-project:first-child { border-top: 1px solid var(--line); }
+.disclosure-body .applied-project:first-child { border-top: 1px solid var(--line); }
 .applied-project > summary, .applied-project-summary { padding: 21px 20px 21px 0; margin-left: 19px; color: var(--ink); font-size: 1rem; font-weight: 500; line-height: 1.65; }
 .applied-project > summary { cursor: pointer; list-style-position: outside; }
 .applied-project[open] > summary { padding-bottom: 6px; }
