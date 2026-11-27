@@ -101,7 +101,6 @@ main { min-width: 0; outline: none; }
 .profile-role { font-size: .875rem; font-weight: 550; margin-bottom: 4px; }
 .affiliation { color: var(--muted); font-size: .875rem; line-height: 1.75; margin-bottom: 22px; }
 .profile-links { display: grid; grid-template-columns: repeat(3, minmax(44px, 54px)); gap: 8px; }
-.profile-links .profile-axis_lab { grid-column: 1; }
 .profile-links :is(a, button) { position: relative; display: grid; justify-items: center; align-content: start; color: #40444c; text-decoration: none; border-radius: 8px; }
 .profile-links button { padding: 0; border: 0; background: transparent; }
 .profile-links button:disabled { color: #838893; cursor: default; }
@@ -330,7 +329,7 @@ footer { display: flex; justify-content: space-between; gap: 18px; border-top: 1
   .also-known { grid-column: 2; margin-bottom: 9px; font-size: .8125rem; }
   .profile-role { grid-column: 2; margin-bottom: 3px; }
   .affiliation { grid-column: 2; font-size: .8125rem; margin: 0; }
-  .profile-links { grid-column: 1/-1; grid-template-columns: repeat(3, minmax(0, 76px)); margin-top: 21px; row-gap: 12px; }
+  .profile-links { grid-column: 1/-1; grid-template-columns: repeat(5, minmax(0, 76px)); column-gap: clamp(2px, 1vw, 8px); margin-top: 21px; }
   .profile-links :is(a, button) { gap: 3px; }
   .profile-links :is(a, button) .profile-link-name { position: static; transform: none; padding: 0; visibility: visible; white-space: normal; text-align: center; line-height: 1.3; background: transparent; color: inherit; }
   .section { margin-top: 44px; }
