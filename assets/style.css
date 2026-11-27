@@ -101,19 +101,24 @@ main { min-width: 0; outline: none; }
 .profile-role { font-size: .875rem; font-weight: 550; margin-bottom: 4px; }
 .affiliation { color: var(--muted); font-size: .875rem; line-height: 1.75; margin-bottom: 22px; }
 .profile-links { display: grid; grid-template-columns: repeat(3, minmax(44px, 54px)); gap: 8px; }
-.profile-links .profile-orcid { grid-column: 1; }
+.profile-links .profile-axis_lab { grid-column: 1; }
 .profile-links :is(a, button) { position: relative; display: grid; justify-items: center; align-content: start; color: #40444c; text-decoration: none; border-radius: 8px; }
-.profile-links button:disabled { padding: 0; border: 0; background: transparent; color: #838893; cursor: default; }
+.profile-links button { padding: 0; border: 0; background: transparent; }
+.profile-links button:disabled { color: #838893; cursor: default; }
+.email-feedback { grid-column: 1 / -1; min-width: 0; font-size: .8125rem; }
+.email-feedback p { margin: 0; color: var(--muted); }
+.email-feedback p:not(:empty) { margin-top: 8px; }
+.email-feedback input { width: 100%; max-width: 260px; padding: 5px; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); background: white; font: inherit; }
 .profile-links svg { display: block; padding: 11px; border-radius: 50%; background: var(--soft); }
 .profile-logo { display: block; width: 44px; height: 44px; padding: 10px; object-fit: contain; border-radius: 50%; background: var(--soft); }
 .axis-logo { padding: 11px; }
 .profile-links a:is(:hover, :focus-visible) .profile-logo { outline: 1px solid var(--accent); outline-offset: -1px; }
-.profile-links a:hover, .profile-links a:focus-visible { color: var(--accent); }
-.profile-links a:is(:hover, :focus-visible) svg { background: #edf1fc; }
-.profile-links a:focus-visible { outline-offset: -2px; }
+.profile-links :is(a, button:enabled):is(:hover, :focus-visible) { color: var(--accent); }
+.profile-links :is(a, button:enabled):is(:hover, :focus-visible) svg { background: #edf1fc; }
+.profile-links :is(a, button):focus-visible { outline-offset: -2px; }
 .profile-link-name { position: absolute; bottom: calc(100% + 3px); left: 50%; transform: translateX(-50%); padding: 3px 8px; border-radius: 5px; white-space: nowrap; font-size: .8125rem; color: white; background: var(--ink); visibility: hidden; pointer-events: none; }
-.profile-links :is(.profile-email, .profile-orcid) .profile-link-name { left: 0; transform: none; }
-.profile-links a:last-child .profile-link-name { left: auto; right: 0; transform: none; }
+.profile-links :is(.profile-google_scholar, .profile-axis_lab) .profile-link-name { left: 0; transform: none; }
+.profile-links .profile-orcid .profile-link-name { left: auto; right: 0; transform: none; }
 .profile-links :is(a, button):is(:hover, :focus-visible) .profile-link-name { visibility: visible; }
 .intro h1 { margin-bottom: 26px; }
 .biography p { color: #45484f; line-height: 1.8; margin-bottom: 18px; }

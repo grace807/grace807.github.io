@@ -43,6 +43,38 @@ window.addEventListener('scroll', () => {
   scrollbarHideTimer = window.setTimeout(() => scrollRoot.classList.remove('is-scrolling'), 800);
 }, {passive: true});
 
+const emailLink = document.querySelector('.profile-email');
+if (emailLink) {
+  const addressField = document.querySelector('.email-feedback input');
+  const status = document.querySelector('.email-feedback [role="status"]');
+  const copyButton = document.createElement('button');
+  copyButton.type = 'button';
+  copyButton.className = emailLink.className;
+  Object.assign(copyButton.dataset, emailLink.dataset);
+  copyButton.setAttribute('aria-label', 'Copy email address');
+  copyButton.append(...emailLink.childNodes);
+  copyButton.querySelector('.profile-link-name').textContent = 'Copy email';
+  emailLink.replaceWith(copyButton);
+
+  let messageTimer;
+  copyButton.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(addressField.value);
+    } catch {
+      window.clearTimeout(messageTimer);
+      status.textContent = 'Copy the address below.';
+      addressField.hidden = false;
+      addressField.focus();
+      addressField.select();
+      return;
+    }
+    addressField.hidden = true;
+    status.textContent = 'Email copied';
+    window.clearTimeout(messageTimer);
+    messageTimer = window.setTimeout(() => { status.textContent = ''; }, 3000);
+  });
+}
+
 const filters = document.querySelector('.filters');
 if (filters) {
   filters.hidden = false;
