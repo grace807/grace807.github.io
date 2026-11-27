@@ -51,9 +51,9 @@ if (emailLink) {
   copyButton.type = 'button';
   copyButton.className = emailLink.className;
   Object.assign(copyButton.dataset, emailLink.dataset);
-  copyButton.setAttribute('aria-label', 'Copy email address');
+  copyButton.setAttribute('aria-label', 'Copy Email Address');
   copyButton.append(...emailLink.childNodes);
-  copyButton.querySelector('.profile-link-name').textContent = 'Copy email';
+  copyButton.querySelector('.profile-link-name').textContent = 'Copy Email';
   emailLink.replaceWith(copyButton);
 
   let messageTimer;
